@@ -4,6 +4,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import Header from './components/Header';
 import OrderQueue from './components/OrderQueue';
 import OrderHistory from './components/OrderHistory';
+import KitchenInventory from './components/KitchenInventory';
 import { ordersApi } from './services/api';
 import './App.css';
 
@@ -117,6 +118,8 @@ function KitchenApp() {
         return <OrderQueue orders={orders} onMarkComplete={handleMarkComplete} />;
       case 'history':
         return <OrderHistory />;
+      case 'inventory':
+        return <KitchenInventory />;
       default:
         return <OrderQueue orders={orders} onMarkComplete={handleMarkComplete} />;
     }

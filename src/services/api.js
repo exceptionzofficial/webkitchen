@@ -48,4 +48,67 @@ export const ordersApi = {
     },
 };
 
-export default { ordersApi };
+// Kitchen Inventory API
+export const inventoryApi = {
+    // Get all kitchen inventory items
+    getAll: async () => {
+        const response = await fetch(`${API_BASE_URL}/kitchen-inventory`);
+        const data = await response.json();
+        if (!data.success) throw new Error(data.error);
+        return data.data;
+    },
+
+    // Refill/Update stock level
+    updateStock: async (inventoryId, quantity) => {
+        const response = await fetch(`${API_BASE_URL}/kitchen-inventory/${inventoryId}/refill`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ quantity }),
+        });
+        const data = await response.json();
+        if (!data.success) throw new Error(data.error);
+        return data.data;
+    },
+
+    // Create inventory item
+    create: async (item) => {
+        const response = await fetch(`${API_BASE_URL}/kitchen-inventory`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: item.name,
+                quantity: item.quantity || 0,
+                unit: item.unit || 'pcs',
+                minStock: item.minStock || 10,
+                category: item.category || 'Kitchen',
+            }),
+        });
+        const data = await response.json();
+        if (!data.success) throw new Error(data.error);
+        return data.data;
+    },
+
+    // Update inventory item
+    update: async (inventoryId, updates) => {
+        const response = await fetch(`${API_BASE_URL}/kitchen-inventory/${inventoryId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updates),
+        });
+        const data = await response.json();
+        if (!data.success) throw new Error(data.error);
+        return data.data;
+    },
+
+    // Delete inventory item
+    delete: async (inventoryId) => {
+        const response = await fetch(`${API_BASE_URL}/kitchen-inventory/${inventoryId}`, {
+            method: 'DELETE',
+        });
+        const data = await response.json();
+        if (!data.success) throw new Error(data.error);
+        return data.data;
+    },
+};
+
+export default { ordersApi, inventoryApi };

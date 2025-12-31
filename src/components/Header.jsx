@@ -49,6 +49,12 @@ function Header({ liveOrderCount = 0, onRefresh, activePage = 'orders', onPageCh
                 >
                     📋 History
                 </button>
+                <button
+                    className={`nav-tab ${activePage === 'inventory' ? 'active' : ''}`}
+                    onClick={() => onPageChange?.('inventory')}
+                >
+                    📦 Inventory
+                </button>
             </div>
 
             <div className="header-right">
