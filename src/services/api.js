@@ -1,6 +1,6 @@
 // API Service for SRI KALKI Kitchen Dashboard
-const API_BASE_URL = 'http://localhost:5000/api';
-// const API_BASE_URL = 'https://jumjum-backend.vercel.app/api';
+// const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://jumjum-backend.vercel.app/api';
 
 // Billing/Orders API
 export const ordersApi = {
